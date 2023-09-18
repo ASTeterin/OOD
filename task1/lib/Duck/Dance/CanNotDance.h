@@ -10,7 +10,7 @@ class CanNotDance : public IDanceBehavior
 public:
 	void Dance() override
 	{
-		std::cout << "I can not dance!\n";
+		std::cout << "I can not dance!" << std::endl;
 	}
 };
 

@@ -17,7 +17,7 @@ private:
 	int m_flightCounter = 0;
 	void CountFligth()
 	{
-		std::cout << "Count fligth: " << ++m_flightCounter << "\n";
+		std::cout << "Count fligth: " << ++m_flightCounter << std::endl;
 	}
 };
 
