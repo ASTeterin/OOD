@@ -49,7 +49,7 @@ private:
 
 void FlyWithWings()
 {
-		cout << "I'm flying with wings" << endl;
+	cout << "I'm flying with wings" << endl;
 }
 
 void FlyNoWay() 
@@ -57,7 +57,7 @@ void FlyNoWay()
 
 void QuackBehavior()
 {
-	cout << "Quack Quack!!!" << endl;
+	cout << "Quack Quack!" << endl;
 };
 
 void DanceTheWaltz()
