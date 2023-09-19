@@ -47,9 +47,12 @@ private:
 	Strategy m_danceBehavior;
 };
 
-void FlyWithWings()
+Strategy FlyWithWings()
 {
-	cout << "I'm flying with wings" << endl;
+	int numberOfFlight = 0;
+	return [numberOfFlight]() mutable {
+		std::cout << "Number of fligth: " << ++numberOfFlight << std::endl;
+	};
 }
 
 void FlyNoWay() 
@@ -60,21 +63,78 @@ void QuackBehavior()
 	cout << "Quack Quack!" << endl;
 };
 
-void DanceTheWaltz()
+void SqueekBehavior()
+{
+	cout << "Squeek!" << endl;
+};
+
+void MuteQuackBehavior()
+{};
+
+void DanceWaltz()
 {
 	cout << "I'm dancing waltz!" << endl;
+};
+
+void DanceMinuet()
+{
+	cout << "I'm dancing minuet!" << endl;
+};
+
+void CanNotDance()
+{
+	std::cout << "I can not dance!" << std::endl;
 };
 
 class MallardDuck : public Duck
 {
 public:
 	MallardDuck()
-		: Duck(FlyWithWings, QuackBehavior, DanceTheWaltz)
+		: Duck(FlyWithWings(), QuackBehavior, DanceWaltz)
 	{}
 
 	void Display() const override
 	{
 		cout << "I'm mallard duck!" << endl;
+	}
+};
+
+class RedheadDuck : public Duck
+{
+public:
+	RedheadDuck()
+		: Duck(FlyWithWings(), QuackBehavior, DanceMinuet)
+	{}
+
+	void Display() const override
+	{
+		cout << "I'm redhead duck!" << endl;
+	}
+};
+
+class RubberDuck : public Duck
+{
+public:
+	RubberDuck()
+		: Duck(FlyNoWay, SqueekBehavior, CanNotDance)
+	{}
+
+	void Display() const override
+	{
+		cout << "I'm rubber duck!" << endl;
+	}
+};
+
+class DecoyDuck : public Duck
+{
+public:
+	DecoyDuck()
+		: Duck(FlyNoWay, MuteQuackBehavior, CanNotDance)
+	{}
+
+	void Display() const override
+	{
+		cout << "I'm rubber duck!" << endl;
 	}
 };
 
@@ -97,4 +157,13 @@ int main()
 	MallardDuck mallardDuck;
 	PlayWithDuck(mallardDuck);
 	PlayWithDuck(mallardDuck);
+	
+	RedheadDuck redheadDuck;
+	PlayWithDuck(redheadDuck);
+
+	RubberDuck rubberDuck;
+	PlayWithDuck(rubberDuck);
+
+	DecoyDuck decoyDuck;
+	PlayWithDuck(decoyDuck);
 }
